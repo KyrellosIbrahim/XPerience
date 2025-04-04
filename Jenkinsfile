@@ -1,10 +1,6 @@
 pipeline {
     agent any
-
-    environment {
-        MAVEN_OPTS = "-Dmaven.repo.local=/home/kyrellosibrahim/.m2/repository"
-    }
-
+    
     stages {
         stage('Checkout') {
             steps {
@@ -14,8 +10,8 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'whoami'  // Debugging step to check user
-                sh 'mvn test -Dmaven.repo.local=/home/kyrellosibrahim/.m2/repository'
+                sh 'whoami'  // debugging
+                sh 'mvn test'
             }
             post {
                 failure {
@@ -26,7 +22,7 @@ pipeline {
 
         stage('Build JAR') {
             steps {
-                sh 'mvn package -DskipTests -Dmaven.repo.local=/home/kyrellosibrahim/.m2/repository'
+                sh 'mvn package -DskipTests'
             }
         }
 
@@ -54,3 +50,4 @@ pipeline {
         }
     }
 }
+
