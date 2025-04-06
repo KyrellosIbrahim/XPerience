@@ -20,6 +20,8 @@ import java.util.logging.Logger;
  * @version 1.0
  */
 public class EventStoreMemory implements EventStore {
+    private static final int MAX_NAME_LENGTH = 300; // maximum length for event name
+    private static final int MAX_DESCRIPTION_LENGTH = 65535; // maximum length for event description
     private static final Logger logger = Logger.getLogger("xperience");
     private final List<Event> eventList = new ArrayList<>();
 

@@ -6,7 +6,6 @@
  * Professor: Dr. Donahoo
  * Description: JUnit test for PasswordList class.
  */
-package xperience;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
