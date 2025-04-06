@@ -43,6 +43,21 @@ pipeline {
                 sh 'docker run -d -p 8000:8000 --name xperience-server xperience-server:latest'
             }
         }
+        stage('Validate Deployment') {
+    steps {
+        script {
+            // Give server time to start
+            sleep 10 
+            
+            // Test the server response
+            def response = sh(script: 'curl -X POST http://localhost:8000 -d "TestEvent#2024-01-01#12:00#TestDescription#correctPassword#"', returnStdout: true).trim()
+            
+            if (!response.startsWith("Accept#")) {
+                error "Server validation failed. Expected 'Accept#' but got: ${response}"
+            }
+        }
+    }
+}
     }
     
     post {
