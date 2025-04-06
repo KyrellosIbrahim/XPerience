@@ -46,8 +46,6 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>xperience</sourceDirectory>
-        <testSourceDirectory>tests</testSourceDirectory>
         <plugins>
             <!-- Compiler Plugin -->
             <plugin>
