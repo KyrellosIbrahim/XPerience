@@ -44,6 +44,12 @@ pipeline {
             }
         }
     }
+        stage('Check XPerienceServer Logs') {
+    steps {
+        sh 'docker logs xperience-server'
+    }
+}
+
     
     post {
         success {
