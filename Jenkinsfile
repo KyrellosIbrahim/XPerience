@@ -43,13 +43,6 @@ pipeline {
                 sh 'docker run -d -p 8000:8000 --name xperience-server xperience-server:latest'
             }
         }
-
-        // This stage should be inside the 'stages' block
-        stage('Check XPerienceServer Logs') {
-            steps {
-                sh 'docker logs xperience-server'
-            }
-        }
     }
     
     post {
