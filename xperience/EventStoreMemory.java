@@ -33,6 +33,17 @@ public class EventStoreMemory implements EventStore {
      */
     @Override
     public boolean addEvent(String name, String date, String time, String description) {
+        // check for invalid name
+        if (name == null || name.trim().isEmpty() || name.length() > MAX_NAME_LENGTH) {
+            logger.warning("Invalid event name: " + name);
+            return false;
+        }
+        // check for invalid description
+        if (description == null || description.trim().isEmpty() || description.length() > MAX_DESCRIPTION_LENGTH) {
+            logger.warning("Invalid event description: " + description);
+            return false;
+        }
+
         Event event = new Event(name, date, time, description);
         eventList.add(event);
         logger.info("Added event to memory store: " + event);

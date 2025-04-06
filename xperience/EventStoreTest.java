@@ -86,4 +86,10 @@ public class EventStoreTest {
         assertEquals("2025-04-02", event2.getDate());
         assertEquals("16:45", event2.getTime());
     }
+    
+    @Test
+    public void testInvalidEventName() {
+        String invalidEventName = "A".repeat(301);  // Name too long
+        assertFalse(eventStore.addEvent(invalidEventName, event1[1], event1[2], event1[3]));
+    }
 }
