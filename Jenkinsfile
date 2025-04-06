@@ -47,7 +47,7 @@ pipeline {
     	    steps {
         script {
             // Give server time to start
-            sleep 30
+            sleep 10
             
             // Test the server response
             echo "Testing server response..."
