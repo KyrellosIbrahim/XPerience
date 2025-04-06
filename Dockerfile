@@ -7,9 +7,8 @@ COPY target/XPS.jar /XPS.jar
 # Copy the passwords file
 COPY passwords.txt /passwords.txt
 
-# Set the entry point for the container
+# expose the port the server will be on
+EXPOSE 8000
 # Passing port 8000 and the password file as arguments
 ENTRYPOINT ["java", "-jar", "/XPS.jar", "8000", "/passwords.txt"]
 
-# Expose the port your application will run on
-EXPOSE 8000
