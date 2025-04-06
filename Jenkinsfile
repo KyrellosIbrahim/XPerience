@@ -46,13 +46,32 @@ pipeline {
         stage('Validate Deployment') {
     	    steps {
         script {
-            // Give server time to start
-            sleep 10
+            // Check container status first
+            def status = sh(
+                script: 'docker inspect -f "{{.State.Status}}" xperience-server',
+                returnStdout: true
+            ).trim()
+            echo "Container status: ${status}"
             
-            // Test the server response
-            echo "Testing server response..."
-            def response = sh(script: 'curl -X POST http://localhost:8000 -d "TestEvent#2024-01-01#12:00#TestDescription#TestPassword#"', returnStdout: true).trim()
-            echo "Server response: ${response}"
+            // Get server logs
+            def logs = sh(
+                script: 'docker logs xperience-server',
+                returnStdout: true
+            ).trim()
+            echo "Server logs:\n${logs}"
+            
+            // Only test if container is running
+            if (status == "running") {
+                sleep 10
+                echo "Testing server response..."
+                def response = sh(
+                    script: 'curl -v -X POST http://localhost:8000 -d "TestEvent#2024-01-01#12:00#TestDescription#TestPassword#"',
+                    returnStdout: true
+                ).trim()
+                echo "Server response: ${response}"
+            } else {
+                error "Container is not running!"
+            }
         }
     }
 }

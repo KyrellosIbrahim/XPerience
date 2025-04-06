@@ -25,11 +25,9 @@
 
         <!-- DonaBase local JAR -->
         <dependency>
-            <groupId>com.donabase</groupId>
+            <groupId>com.jeffdonahoo</groupId>
             <artifactId>donabase</artifactId>
             <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>/home/kyrellosibrahim/CodeFiles/XPerience/libs/DonaBase.jar</systemPath>
         </dependency>
 
         <!-- JUnit 5 -->
