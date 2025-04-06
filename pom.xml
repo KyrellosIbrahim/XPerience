@@ -29,7 +29,7 @@
             <artifactId>donabase</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-             <systemPath>${project.basedir}/lib/DonaBase.jar</systemPath>
+             <systemPath>/home/kyrellosibrahim/CodeFiles/XPerience/libs/DonaBase.jar</systemPath>
         </dependency>
 
         <dependency>
