@@ -28,7 +28,7 @@
             <groupId>com.donabase</groupId>
             <artifactId>donabase</artifactId>
             <version>1.0</version>
-            <scope>compile</scope>
+            <scope>system</scope>
         </dependency>
 
         <dependency>
