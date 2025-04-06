@@ -27,6 +27,7 @@ pipeline {
         stage('Build JAR') {
             steps {
                 sh 'mvn package -DskipTests -Dmaven.repo.local=/home/kyrellosibrahim/.m2/repository'
+                sh 'jar tf target/XPS.jar'
             }
         }
         
