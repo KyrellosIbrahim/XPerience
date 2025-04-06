@@ -72,6 +72,7 @@ public class XPerienceServer {
             return; // This line is unreachable but required for compilation
         }
         String passwordFile = args[1]; // get password file from command line
+        logger.info("Starting with parameters: port=" + servPort + ", passwordFile=" + passwordFile);
         try {
             EventStore eventStore = new EventStoreMemory();
             PasswordList passwordList = new PasswordList(passwordFile);
