@@ -53,10 +53,6 @@ pipeline {
             echo "Testing server response..."
             def response = sh(script: 'curl -X POST http://localhost:8000 -d "TestEvent#2024-01-01#12:00#TestDescription#correctPassword#"', returnStdout: true).trim()
             echo "Server response: ${response}"
-            
-            echo "Testing server response..."
-            def response = sh(script: 'curl -X POST http://localhost:8000 -d "TestEvent#2024-01-01#12:00#TestDescription#correctPassword#"', returnStdout: true).trim()
-            echo "Server response: ${response}"
         }
     }
 }
