@@ -47,7 +47,7 @@
 
     <build>
         <sourceDirectory>xperience</sourceDirectory>
-        <testSourceDirectory>xperience</testSourceDirectory>
+        <testSourceDirectory>tests</testSourceDirectory>
         <plugins>
             <!-- Compiler Plugin -->
             <plugin>
