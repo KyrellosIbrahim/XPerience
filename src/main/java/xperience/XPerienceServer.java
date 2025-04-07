@@ -198,7 +198,7 @@ public class XPerienceServer {
         boolean success = EVENT_STORE.addEvent(name, date, time, description);
         if(success) {
             int eventCount = EVENT_STORE.getEventCount();
-            out.print("Aksept#" + eventCount + "#");
+            out.print("Accept#" + eventCount + "#");
             logger.info("Event added successfully: " + name);
         }
         else {
