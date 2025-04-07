@@ -8,10 +8,19 @@
  */
 package xperience;
 
+import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * JUnit test class for EventStore interface using EventStoreMemory implementation.
@@ -37,6 +46,34 @@ public class EventStoreTest {
         // event 2
         assertTrue(eventStore.addEvent(event2[0], event2[1], event2[2], event2[3]));
         assertEquals(2, eventStore.getEventCount());
+    }
+    
+    @Test
+    public void testAddEventResponse() throws IOException {
+        // Create a temporary password file for testing
+        Path tempPasswordFile = Files.createTempFile("test-passwords", ".txt");
+        Files.write(tempPasswordFile, List.of("testpassword"));
+
+        PasswordList ps = new PasswordList(tempPasswordFile.toString());
+        XPerienceServer server = new XPerienceServer(eventStore, ps);
+
+        // Use ByteArrayOutputStream to capture output
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        PrintWriter writer = new PrintWriter(out, true);
+
+        // Simulate client request with correct format and include password
+        String input = "TestEvent#2025-04-01#12:30#TestDescription#testpassword#";
+        server.processClientRequest(new Scanner(input).useDelimiter("#"), writer);
+
+        // Flush the writer to ensure all output is written
+        writer.flush();
+
+        String response = out.toString().trim();
+        System.out.println("Response: " + response);
+        assertEquals("Accept#1#", response);
+
+        // Clean up temporary file
+        Files.delete(tempPasswordFile);
     }
 
     @Test
