@@ -33,7 +33,7 @@ public class PasswordListTest {
     @BeforeEach
     public void setup() throws IOException {
         passwordFile = tempDir.resolve("passwords.txt"); // create temporary password file
-        testPasswords = Arrays.asList("password123", "Strong!Password", "foofoo", "RonaldMcDonald", "Waluigi); // list of test passwords
+        testPasswords = Arrays.asList("password123", "Strong!Password", "foofoo", "RonaldMcDonald", "Waluigi"); // list of test passwords
         Files.write(passwordFile, testPasswords); // write test passwords to the file
     }
 
